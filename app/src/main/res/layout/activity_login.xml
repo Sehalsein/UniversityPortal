@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.sehalsein.computantra2017.Activity.RegisterActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView3"
@@ -87,7 +86,7 @@
 
 
     <Button
-        android:onClick="register"
+        android:onClick="login"
         android:id="@+id/button2"
         android:layout_width="322dp"
         android:layout_height="47dp"

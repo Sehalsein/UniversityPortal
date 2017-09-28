@@ -17,9 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UniversityHomeTabActivity"
+            android:name=".UniversityPortalActivity.UniversityHomeTabActivity"
             android:label="@string/title_activity_university_home_tab" />
-        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".UniversityPortalActivity.UniverstyAddCollege" />
+        <activity
+            android:name=".UniversityPortalActivity.UniversityViewAllFiles"
+            android:label="@string/title_activity_university_view_all_files"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
