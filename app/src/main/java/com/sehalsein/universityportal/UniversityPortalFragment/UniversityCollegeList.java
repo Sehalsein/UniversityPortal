@@ -30,9 +30,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Model.CollegeDetail;
 import com.sehalsein.universityportal.R;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniversityViewAllFiles;
+import com.sehalsein.universityportal.UniversityPortalActivity.UniversityViewAllNotification;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniverstyAddCollege;
 import com.sehalsein.universityportal.ViewHolder.CollegeListViewHolder;
 
@@ -123,6 +125,7 @@ public class UniversityCollegeList extends Fragment {
                                                 break;
                                             case R.id.college_option_send_notification:
                                                 makeToast("Notification");
+                                                sendNotification(collegeDetail);
                                                 break;
                                             case R.id.college_option_send_file:
                                                 makeToast("File");
@@ -191,6 +194,12 @@ public class UniversityCollegeList extends Fragment {
 
     private void viewImagesPage(CollegeDetail data) {
         Intent intent = new Intent(getContext(), UniversityViewAllFiles.class);
+        intent.putExtra(COLLEGE_KEY, data.getId());
+        startActivity(intent);
+    }
+
+    private void sendNotification(CollegeDetail data){
+        Intent intent = new Intent(getContext(), UniversityViewAllNotification.class);
         intent.putExtra(COLLEGE_KEY, data.getId());
         startActivity(intent);
     }

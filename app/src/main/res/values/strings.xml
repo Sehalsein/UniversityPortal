@@ -12,5 +12,9 @@
 
     <string name="firebase_databse_node_colleges">colleges</string>
     <string name="firebase_databse_node_colleges_files">colleges_files</string>
+    <string name="firebase_databse_node_notification">college_notification</string>
     <string name="title_activity_university_view_all_files">UniversityViewAllFiles</string>
+    <string name="title_activity_university_view_all_notification">UniversityViewAllNotification
+    </string>
+    <string name="title_activity_faculty_portal">FacultyPortal</string>
 </resources>

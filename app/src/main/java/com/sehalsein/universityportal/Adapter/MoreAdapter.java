@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Model.MoreOption;
 import com.sehalsein.universityportal.R;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniverstyAddCollege;
@@ -57,7 +58,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         ///context.startActivity(new Intent(context, AmenitiesListActivity.class));
                         break;
                     case "Notification" :
-                        //context.startActivity(new Intent(context, NotificationActivity.class));
+                        context.startActivity(new Intent(context, NotificationActivity.class));
                         break;
                     default:
                         makeToast("Comming Soon");

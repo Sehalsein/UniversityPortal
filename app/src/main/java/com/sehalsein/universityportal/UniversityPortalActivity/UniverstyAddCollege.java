@@ -47,6 +47,8 @@ public class UniverstyAddCollege extends AppCompatActivity {
         collegeNameEditText = findViewById(R.id.collge_name_edit_text);
         collegeAddressEditText = findViewById(R.id.college_address_edit_text);
 
+        //setupActionBar("Notifications");
+
     }
 
     private void setupActionBar(String title) {

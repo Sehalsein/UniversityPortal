@@ -50,12 +50,14 @@ public class UniversityMoreOption extends Fragment {
             String title[] = {
                     "Add College",
                     "Notification",
+                    "Files",
                     "Logout",
             };
 
             String description[] = {
                     "Add new Colleges",
                     "Send Notifications to all College",
+                    "Send Files to all College",
                     "",
             };
 

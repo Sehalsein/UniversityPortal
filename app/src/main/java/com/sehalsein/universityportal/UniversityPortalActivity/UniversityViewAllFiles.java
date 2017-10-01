@@ -53,7 +53,6 @@ public class UniversityViewAllFiles extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private static final String COLLEGE_KEY = "CollegeID";
     private DatabaseReference mCollegeFileRef;
-    private DatabaseReference mCollegeRef;
     private String COLLEGE_NODE = null;
     private String COLLEGE_IMAGES_NODE = null;
     private RelativeLayout emptyView;
@@ -85,7 +84,7 @@ public class UniversityViewAllFiles extends AppCompatActivity {
         COLLEGE_IMAGES_NODE = getResources().getString(R.string.firebase_databse_node_colleges_files);
         mDatabase = FirebaseDatabase.getInstance();
         mCollegeFileRef = mDatabase.getReference(COLLEGE_IMAGES_NODE).child(collegeId);
-        mCollegeRef = mDatabase.getReference(COLLEGE_NODE).child(collegeId);
+        //mCollegeRef = mDatabase.getReference(COLLEGE_NODE).child(collegeId);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 

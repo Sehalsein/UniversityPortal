@@ -24,7 +24,15 @@
         <activity
             android:name=".UniversityPortalActivity.UniversityViewAllFiles"
             android:label="@string/title_activity_university_view_all_files"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.NotificationActivity" />
+        <activity
+            android:name=".UniversityPortalActivity.UniversityViewAllNotification"
+            android:label="@string/title_activity_university_view_all_notification"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FacultyPortalActivity.FacultyPortal"
+            android:label="@string/title_activity_faculty_portal"></activity>
     </application>
 
 </manifest>
