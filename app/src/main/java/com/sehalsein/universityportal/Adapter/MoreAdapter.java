@@ -10,11 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.sehalsein.universityportal.Activity.CollegeDetailActivity;
+import com.sehalsein.universityportal.Activity.LoginActivity;
 import com.sehalsein.universityportal.Activity.NotificationActivity;
+import com.sehalsein.universityportal.Activity.SplashScreenActivity;
+import com.sehalsein.universityportal.FacultyPortalActivity.FacultyAddStudentActivity;
 import com.sehalsein.universityportal.Model.MoreOption;
+import com.sehalsein.universityportal.Model.UserData;
+import com.sehalsein.universityportal.Model.UserDetail;
 import com.sehalsein.universityportal.R;
 import com.sehalsein.universityportal.StudentPortalActivity.StudentViewAllFiles;
+import com.sehalsein.universityportal.UniversityPortalActivity.UniversityHomeTabActivity;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniversitySendFileActivity;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniverstyAddCollege;
 
@@ -24,11 +31,12 @@ import java.util.List;
  * Created by sehalsein on 28/09/17.
  */
 
-public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MoreOption> moreOptionList;
     private Context context;
     private static final String PORTAL_KEY = "portal";
+    private static final String COLLEGE_KEY = "CollegeID";
 
     public MoreAdapter(List<MoreOption> moreOptionList, Context context) {
         this.moreOptionList = moreOptionList;
@@ -56,30 +64,37 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         moreOptionViewHolder.row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (item.getCode()){
-                    case "UniAddCollege" :
+                switch (item.getCode()) {
+                    case "UniAddCollege":
                         context.startActivity(new Intent(context, UniverstyAddCollege.class));
                         break;
-                    case "Logout" :
+                    case "Logout":
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                         break;
-                    case "UniAddFile" :
+                    case "UniAddFile":
                         context.startActivity(new Intent(context, UniversitySendFileActivity.class));
                         break;
-                    case "UniAddNotify" :
+                    case "UniAddNotify":
                         context.startActivity(new Intent(context, NotificationActivity.class));
                         break;
                     case "FacultyAddNotify":
                         sendNotification();
                         break;
+                    case "FacultyAddStudent":
+                        context.startActivity(new Intent(context, FacultyAddStudentActivity.class));
+                        break;
 //                    case "FacultyAddFile":
 //                        break;
 //                    case "FacultyAddTimeTable":
 //                        break;
-                    case "StudentViewFile" :
+                    case "StudentViewFile":
                         context.startActivity(new Intent(context, StudentViewAllFiles.class));
                         break;
                     case "StudentCollegeDetail":
-                        context.startActivity(new Intent(context, CollegeDetailActivity.class));
+                        viewCollegeDetail();
                         break;
                     default:
                         makeToast("Comming Soon");
@@ -90,14 +105,20 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     }
 
-    private void sendNotification(){
+    private void sendNotification() {
         Intent intent = new Intent(context, NotificationActivity.class);
         intent.putExtra(PORTAL_KEY, "Faculty");
         context.startActivity(intent);
     }
 
-    private void makeToast(String message){
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    private void viewCollegeDetail() {
+        Intent intent = new Intent(context, CollegeDetailActivity.class);
+        intent.putExtra(COLLEGE_KEY, UserData.collegeId);
+        context.startActivity(intent);
+    }
+
+    private void makeToast(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -105,7 +126,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         return moreOptionList.size();
     }
 
-    public class MoreOptionViewHolder extends RecyclerView.ViewHolder{
+    public class MoreOptionViewHolder extends RecyclerView.ViewHolder {
 
         private TextView moreOptionTitle;
         private TextView moreOptionDescription;
@@ -120,11 +141,11 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             this.row = itemView;
         }
 
-        public void setRow(MoreOption data){
+        public void setRow(MoreOption data) {
             this.moreOptionTitle.setText(data.getTitle());
             if (data.getDescription().equals("")) {
                 this.moreOptionDescription.setVisibility(View.GONE);
-            }else {
+            } else {
                 this.moreOptionDescription.setVisibility(View.VISIBLE);
                 this.moreOptionDescription.setText(data.getDescription());
             }

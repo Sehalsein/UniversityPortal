@@ -17,5 +17,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     public void loginView(View view){
         startActivity(new Intent(SplashScreenActivity.this,LoginActivity.class));
+        this.finish();
     }
 }

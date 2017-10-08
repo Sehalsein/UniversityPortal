@@ -29,6 +29,7 @@ import com.sehalsein.universityportal.Adapter.GalleryAdapter;
 import com.sehalsein.universityportal.Adapter.NotificationAdapter;
 import com.sehalsein.universityportal.Model.ImagesDetail;
 import com.sehalsein.universityportal.Model.NotificationDetail;
+import com.sehalsein.universityportal.Model.UserData;
 import com.sehalsein.universityportal.R;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniversityViewAllFiles;
 import com.sehalsein.universityportal.ViewHolder.GalleryImagesViewHolder;
@@ -74,11 +75,11 @@ public class StudentViewAllFiles extends AppCompatActivity {
         //COLLEGE_NODE = getResources().getString(R.string.firebase_databse_node_colleges);
         STUDENT_IMAGES_NODE = getResources().getString(R.string.firebase_databse_node_student_files);
         mDatabase = FirebaseDatabase.getInstance();
-        mStudentFileRef = mDatabase.getReference(STUDENT_IMAGES_NODE);
+        mStudentFileRef = mDatabase.getReference(STUDENT_IMAGES_NODE).child(UserData.collegeId);
         //mCollegeRef = mDatabase.getReference(COLLEGE_NODE).child(collegeId);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-        courseId = "MCA";
+        courseId = UserData.studentCourse;
         childExist();
         setRecyclerView();
 

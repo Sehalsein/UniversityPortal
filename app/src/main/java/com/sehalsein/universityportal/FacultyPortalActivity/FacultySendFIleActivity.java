@@ -26,6 +26,7 @@ import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Activity.ViewImageActivity;
 import com.sehalsein.universityportal.Model.ImagesDetail;
 import com.sehalsein.universityportal.Model.NotificationDetail;
+import com.sehalsein.universityportal.Model.UserData;
 import com.sehalsein.universityportal.R;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniversityViewAllFiles;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
@@ -51,7 +52,7 @@ public class FacultySendFIleActivity extends AppCompatActivity {
     private static String STUDENT_FILE_NODE;
     private StorageReference storageRef;
     private FirebaseStorage storage;
-    private String collegeId = "Sample College";
+    private String collegeId ;
     private PermissionListener permissionlistener;
 
 
@@ -60,6 +61,7 @@ public class FacultySendFIleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_send_file);
 
+        collegeId = UserData.collegeId;
         STUDENT_FILE_NODE = getResources().getString(R.string.firebase_databse_node_student_files);
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference(STUDENT_FILE_NODE);
@@ -133,7 +135,7 @@ public class FacultySendFIleActivity extends AppCompatActivity {
     private void updateDatabsewithFileURL(){
         String key = mRef.push().getKey();
         imagesDetail.setId(key);
-        mRef.child(key).setValue(imagesDetail);
+        mRef.child(collegeId).child(key).setValue(imagesDetail);
         this.finish();
     }
 
@@ -173,7 +175,7 @@ public class FacultySendFIleActivity extends AppCompatActivity {
             URL = false;
         }
         if (URL) {
-                makeToast(topic);
+                //makeToast(topic);
                 topic = courseSpinner.getText().toString();
                 if(topic == null || topic.equals("")){
                     return false;

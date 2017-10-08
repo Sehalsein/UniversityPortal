@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sehalsein.universityportal.Adapter.NotificationAdapter;
 import com.sehalsein.universityportal.Model.NotificationDetail;
+import com.sehalsein.universityportal.Model.UserData;
 import com.sehalsein.universityportal.R;
 
 import java.util.ArrayList;
@@ -53,9 +54,9 @@ public class StudentNotificationList extends Fragment {
 
         emptyView = layout.findViewById(R.id.empty_view);
         emptyView.setVisibility(View.INVISIBLE);
-        courseId = "MCA";
+        courseId = UserData.studentCourse;
 
-        myRef = database.getReference(NODE);
+        myRef = database.getReference(NODE).child(UserData.collegeId);
 
         //Inititalizing Recycler View
         recyclerView = (RecyclerView) layout.findViewById(R.id.recyclerView);
@@ -82,7 +83,6 @@ public class StudentNotificationList extends Fragment {
                     emptyView.setVisibility(View.INVISIBLE);
                     Collections.reverse(notificationDetailList);
                     recyclerView.setAdapter(new NotificationAdapter(notificationDetailList, getActivity(),"Faculty"));
-
                 } else {
                     emptyView.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.INVISIBLE);

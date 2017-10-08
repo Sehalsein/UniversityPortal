@@ -43,7 +43,8 @@
         <activity android:name=".FacultyPortalActivity.FacultySendFIleActivity" />
         <activity android:name=".StudentPortalActivity.StudentViewAllFiles" />
         <activity android:name=".Activity.CollegeDetailActivity" />
-        <activity android:name=".UniversityPortalActivity.UniversitySendFileActivity"></activity>
+        <activity android:name=".UniversityPortalActivity.UniversitySendFileActivity" />
+        <activity android:name=".FacultyPortalActivity.FacultyAddStudentActivity"></activity>
     </application>
 
 </manifest>

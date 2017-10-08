@@ -85,7 +85,7 @@ public class UniversityViewAllFiles extends AppCompatActivity {
 
         collegeId = getIntent().getStringExtra(COLLEGE_KEY);
 
-        makeToast(collegeId);
+        //makeToast(collegeId);
         emptyView = findViewById(R.id.empty_view);
         emptyView.setVisibility(View.INVISIBLE);
         description = findViewById(R.id.description_title);

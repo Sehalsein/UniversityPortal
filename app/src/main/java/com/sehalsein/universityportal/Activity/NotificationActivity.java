@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sehalsein.universityportal.Model.NotificationDetail;
+import com.sehalsein.universityportal.Model.UserData;
 import com.sehalsein.universityportal.R;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniversityHomeTabActivity;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
@@ -54,12 +55,14 @@ public class NotificationActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line, courseArray);
         courseSpinner.setAdapter(courseAdapter);
 
+        mDatabase = FirebaseDatabase.getInstance();
         if(portal != null){
             //makeToast("FACULTY");
             titleEditText.setText(getIntent().getStringExtra(TITLE_KEY));
             messageEditText.setText(getIntent().getStringExtra(MESSAGE_KEY));
             NODE = getResources().getString(R.string.firebase_databse_node_student_notification);
             courseSpinner.setVisibility(View.VISIBLE);
+            mRef = mDatabase.getReference(NODE).child(UserData.collegeId);
         }else{
             NODE = getResources().getString(R.string.firebase_databse_node_college_notification);
             courseSpinner.setVisibility(View.GONE);
@@ -68,10 +71,11 @@ public class NotificationActivity extends AppCompatActivity {
             }else{
                 topic = "all";
             }
+            mRef = mDatabase.getReference(NODE);
         }
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference(NODE);
+
+
 
 
 

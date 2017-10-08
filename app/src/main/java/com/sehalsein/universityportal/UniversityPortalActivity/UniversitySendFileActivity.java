@@ -62,14 +62,15 @@ public class UniversitySendFileActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         if(imageURL != null) {
             loadImage(imageURL);
-        }else{
-            makeToast("NO IMAGE");
         }
         topic = "all";
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewImage(imageURL);
+                if(imageURL != null) {
+                    viewImage(imageURL);
+                }
             }
         });
 
@@ -105,13 +106,12 @@ public class UniversitySendFileActivity extends AppCompatActivity {
     }
 
     public void uploadFile(View view){
-        makeToast("Upload File");
         if(validate()){
-            makeToast("Success");
+            makeToast("Upload Successful");
             updateDatabsewithFileURL();
 
         }else {
-            makeToast("Please Fill in all information!");
+            makeToast("Please upload an image to proceed");
         }
     }
 
@@ -123,7 +123,6 @@ public class UniversitySendFileActivity extends AppCompatActivity {
     }
 
     public void chooseFile(View view){
-        makeToast("Choose File");
         TedPermission.with(UniversitySendFileActivity.this)
                 .setPermissionListener(permissionlistener)
                 .setDeniedMessage("Permission Denied")

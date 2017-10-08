@@ -48,6 +48,7 @@ public class FacultyMoreOption extends Fragment {
             String title[] = {
                     "Notification",
                     "Files",
+                    "Add Student",
                     "Time Table",
                     "Logout",
             };
@@ -55,6 +56,7 @@ public class FacultyMoreOption extends Fragment {
             String description[] = {
                     "Send Notifications to Student",
                     "Send Files to Student",
+                    "Add new Student",
                     "Upload Time Table for department",
                     "",
             };
@@ -62,6 +64,7 @@ public class FacultyMoreOption extends Fragment {
             String code[] = {
                     "FacultyAddNotify",
                     "FacultyAddFile",
+                    "FacultyAddStudent",
                     "FacultyAddTimeTable",
                     "Logout",
             };
@@ -69,6 +72,7 @@ public class FacultyMoreOption extends Fragment {
             int icons[] = {
                     R.drawable.ic_notifications_black_24dp,
                     R.drawable.ic_picture_as_pdf_black_24dp,
+                    R.drawable.ic_face_black_24dp,
                     R.drawable.ic_view_comfy_black_24dp,
                     R.drawable.ic_exit_to_app_black_24dp,
             };

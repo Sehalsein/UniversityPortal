@@ -21,31 +21,16 @@
                 android:padding="10dp">
 
                 <EditText
-                    android:id="@+id/collge_name_edit_text"
+                    android:id="@+id/student_name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="College Name"
+                    android:hint="Student Name"
                     android:inputType="textPersonName"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp">
 
-                <EditText
-                    android:id="@+id/college_address_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Address"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textMultiLine"
-                    android:maxLines="1" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -100,13 +85,30 @@
                     android:textColor="#fff" />
             </LinearLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/course_better_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Course"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:background="@color/colorPrimary"
-                android:onClick="addCollege"
-                android:text="Add College"
+                android:onClick="addStudent"
+                android:text="Add Student"
                 android:textColor="#FFF" />
 
         </LinearLayout>

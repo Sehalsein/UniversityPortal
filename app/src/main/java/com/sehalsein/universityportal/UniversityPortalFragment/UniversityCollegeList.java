@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sehalsein.universityportal.Activity.CollegeDetailActivity;
 import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Model.CollegeDetail;
 import com.sehalsein.universityportal.R;
@@ -106,7 +107,7 @@ public class UniversityCollegeList extends Fragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //startActivity(new Intent(getActivity(), ViewAgentActivity.class));
+                        viewCollegeDetail(collegeDetail);
                     }
                 });
                 holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -121,19 +122,20 @@ public class UniversityCollegeList extends Fragment {
                                     public void onBottomSheetItemClick(MenuItem item) {
                                         switch (item.getItemId()) {
                                             case R.id.college_option_view:
-                                                makeToast("View");
+                                                //makeToast("View");
+                                                viewCollegeDetail(collegeDetail);
                                                 break;
                                             case R.id.college_option_send_notification:
-                                                makeToast("Notification");
+                                                //makeToast("Notification");
                                                 sendNotification(collegeDetail);
                                                 break;
                                             case R.id.college_option_send_file:
-                                                makeToast("File");
+                                                //makeToast("File");
                                                 viewImagesPage(collegeDetail);
                                                 break;
-                                            case R.id.college_option_delete:
-                                                makeToast("Delete");
-                                                break;
+//                                            case R.id.college_option_delete:
+//                                                //makeToast("Delete");
+//                                                break;
 //                                            case R.id.college_option_block:
 //                                                makeToast("Block");
 //                                                break;
@@ -190,6 +192,12 @@ public class UniversityCollegeList extends Fragment {
             default:
                 return 1;
         }
+    }
+
+    private void viewCollegeDetail(CollegeDetail data) {
+        Intent intent = new Intent(getContext(), CollegeDetailActivity.class);
+        intent.putExtra(COLLEGE_KEY, data.getId());
+        startActivity(intent);
     }
 
     private void viewImagesPage(CollegeDetail data) {
