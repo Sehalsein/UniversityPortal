@@ -84,7 +84,6 @@
     </android.support.design.widget.TextInputLayout>
 
 
-
     <Button
         android:onClick="login"
         android:id="@+id/button2"

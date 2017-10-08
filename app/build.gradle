@@ -46,6 +46,7 @@ dependencies {
     compile 'com.github.rubensousa:bottomsheetbuilder:1.6.0'
     compile 'gun0912.ted:tedpermission:2.0.0'
     compile 'gun0912.ted:tedbottompicker:1.0.12'
+    compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

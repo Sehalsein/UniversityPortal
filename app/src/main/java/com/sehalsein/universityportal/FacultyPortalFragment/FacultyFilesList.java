@@ -1,32 +1,25 @@
-package com.sehalsein.universityportal.UniversityPortalActivity;
+package com.sehalsein.universityportal.FacultyPortalFragment;
 
-import android.Manifest;
+
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,26 +27,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
+import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Activity.ViewImageActivity;
 import com.sehalsein.universityportal.Adapter.GalleryAdapter;
+import com.sehalsein.universityportal.FacultyPortalActivity.FacultySendFIleActivity;
 import com.sehalsein.universityportal.Model.ImagesDetail;
 import com.sehalsein.universityportal.R;
-import com.sehalsein.universityportal.StudentPortalActivity.StudentViewAllFiles;
+import com.sehalsein.universityportal.UniversityPortalActivity.UniversityViewAllFiles;
 import com.sehalsein.universityportal.ViewHolder.GalleryImagesViewHolder;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-import gun0912.tedbottompicker.TedBottomPicker;
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FacultyFilesList extends Fragment {
 
-public class UniversityViewAllFiles extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
@@ -76,20 +67,26 @@ public class UniversityViewAllFiles extends AppCompatActivity {
     private static final int TABLET_COLOUM_COUNT_POTRAIT = 5;
     private static final int TABLET_COLOUM_COUNT_LANDSCAPE = 7;
 
+
+    public FacultyFilesList() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_university_view_all_files);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View layout =  inflater.inflate(R.layout.fragment_faculty_files_list, container, false);
 
-        collegeId = getIntent().getStringExtra(COLLEGE_KEY);
+        //collegeId = getIntent().getStringExtra(COLLEGE_KEY);
+        collegeId = "-Kv8BNLUTAoYMu1h5giV";
 
-        makeToast(collegeId);
-        emptyView = findViewById(R.id.empty_view);
+//        makeToast(collegeId);
+        emptyView = layout.findViewById(R.id.empty_view);
         emptyView.setVisibility(View.INVISIBLE);
-        description = findViewById(R.id.description_title);
-        recyclerView = findViewById(R.id.recycler_view);
+        description = layout.findViewById(R.id.description_title);
+        recyclerView = layout.findViewById(R.id.recycler_view);
         COLLEGE_NODE = getResources().getString(R.string.firebase_databse_node_colleges);
         COLLEGE_IMAGES_NODE = getResources().getString(R.string.firebase_databse_node_colleges_files);
         mDatabase = FirebaseDatabase.getInstance();
@@ -98,88 +95,14 @@ public class UniversityViewAllFiles extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-
-        final FloatingActionButton fab = findViewById(R.id.fab);
-
-        final PermissionListener permissionlistener = new PermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(UniversityViewAllFiles.this)
-                        .setOnImageSelectedListener(new TedBottomPicker.OnImageSelectedListener() {
-                            @Override
-                            public void onImageSelected(Uri uri) {
-                                makeToast("Image Selected");
-                                uploadImage(uri);
-                            }
-                        })
-                        .create();
-
-                tedBottomPicker.show(getSupportFragmentManager());
-            }
-
-            @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Snackbar.make(fab, "Permission Denied", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-
-
-        };
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TedPermission.with(UniversityViewAllFiles.this)
-                        .setPermissionListener(permissionlistener)
-                        .setDeniedMessage("Permission Denied")
-                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        .check();
-            }
-        });
-
         childExist();
         setRecyclerView();
 
+        return  layout;
     }
 
-    private void uploadImage(Uri uri) {
-        StorageReference filePath = storageRef.child(COLLEGE_NODE).child(collegeId).child(UUID.randomUUID().toString() + "");
-        filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                makeToast("Image Upload Successful");
-                updateDatabaseWithImage(taskSnapshot.getDownloadUrl().toString());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                makeToast("Image Upload Failed");
-            }
-        });
-    }
-
-    private void updateDatabaseWithImage(final String url) {
-        String key = mCollegeFileRef.push().getKey();
-        ImagesDetail imagesDetail = new ImagesDetail(key,url,getCurrentTimeStamp(),collegeId);
-        imagesDetail.setId(key);
-        mCollegeFileRef.child(key).setValue(imagesDetail);
-    }
-
-    public static String getCurrentTimeStamp(){
-        try {
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String currentDateTime = dateFormat.format(new Date()); // Find todays date
-
-            return currentDateTime;
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            return null;
-        }
-    }
     private void setRecyclerView() {
-        gridLayoutManager = new GridLayoutManager(UniversityViewAllFiles.this, getSpanCount());
+        gridLayoutManager = new GridLayoutManager(getActivity(), getSpanCount());
         recyclerView.setLayoutManager(gridLayoutManager);
         loadfiles();
 //        mAdapter = new FirebaseRecyclerAdapter<ImagesDetail, GalleryImagesViewHolder>(
@@ -189,7 +112,7 @@ public class UniversityViewAllFiles extends AppCompatActivity {
 //                mCollegeFileRef) {
 //            @Override
 //            public void populateViewHolder(GalleryImagesViewHolder holder, final ImagesDetail imagesDetail, int position) {
-//                Glide.with(UniversityViewAllFiles.this).load(imagesDetail.getImageURL()).fitCenter().crossFade(100).into(holder.imageView);
+//                Glide.with(getActivity()).load(imagesDetail.getImageURL()).fitCenter().crossFade(100).into(holder.imageView);
 //
 //                holder.itemView.setOnClickListener(new View.OnClickListener() {
 //                    @Override
@@ -198,7 +121,17 @@ public class UniversityViewAllFiles extends AppCompatActivity {
 //                    }
 //                });
 //
+//                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View view) {
+//                        sendImage(imagesDetail.getImageURL());
+//                        makeToast("AS");
+//                        return true;
+//                    }
+//                });
 //            }
+//
+//
 //        };
 //        recyclerView.setAdapter(mAdapter);
     }
@@ -218,7 +151,7 @@ public class UniversityViewAllFiles extends AppCompatActivity {
                 if (!imagesDetailList.isEmpty()) {
                     emptyView.setVisibility(View.INVISIBLE);
                     Collections.reverse(imagesDetailList);
-                    recyclerView.setAdapter(new GalleryAdapter(imagesDetailList, UniversityViewAllFiles.this));
+                    recyclerView.setAdapter(new GalleryAdapter(imagesDetailList, getActivity(),"Faculty"));
 
                 } else {
                     emptyView.setVisibility(View.VISIBLE);
@@ -231,16 +164,16 @@ public class UniversityViewAllFiles extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 //hideProgressView();
-                Toast.makeText(UniversityViewAllFiles.this, "Something went wrong while searching", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Something went wrong while searching", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    private void viewImage(String URL){
-        Intent intent = new Intent(UniversityViewAllFiles.this, ViewImageActivity.class);
+    private void sendImage(String URL){
+        Intent intent = new Intent(getActivity(), FacultySendFIleActivity.class);
         intent.putExtra(IMAGE_KEY, URL);
         startActivity(intent);
     }
+
 
     private void childExist() {
         mCollegeFileRef.limitToLast(1).addValueEventListener(new ValueEventListener() {
@@ -254,6 +187,12 @@ public class UniversityViewAllFiles extends AppCompatActivity {
                 Log.e("Chat", "The read failed: " + error.getMessage());
             }
         });
+    }
+
+    private void viewImage(String URL){
+        Intent intent = new Intent(getActivity(), ViewImageActivity.class);
+        intent.putExtra(IMAGE_KEY, URL);
+        startActivity(intent);
     }
 
     private void setUI(Boolean exists) {
@@ -280,16 +219,9 @@ public class UniversityViewAllFiles extends AppCompatActivity {
         }
     }
 
-    private void setupActionBar(String title) {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
 
     private void makeToast(String message) {
-        Toast.makeText(UniversityViewAllFiles.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -301,7 +233,7 @@ public class UniversityViewAllFiles extends AppCompatActivity {
     }
 
     private boolean checkIsTablet() {
-        Display display = getWindowManager().getDefaultDisplay();
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
 

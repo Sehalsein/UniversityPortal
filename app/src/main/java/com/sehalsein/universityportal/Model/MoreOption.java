@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class MoreOption implements Serializable {
     private String title;
     private String description;
+    private String code;
     private int image;
 
     public MoreOption() {
@@ -47,5 +48,13 @@ public class MoreOption implements Serializable {
 
     public int getImage() {
         return image;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

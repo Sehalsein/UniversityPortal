@@ -1,6 +1,7 @@
-package com.sehalsein.universityportal.UniversityPortalFragment;
+package com.sehalsein.universityportal.FacultyPortalFragment;
 
-
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,23 +17,20 @@ import com.sehalsein.universityportal.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class UniversityMoreOption extends Fragment {
+public class FacultyMoreOption extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
 
     private RecyclerView recyclerView;
 
-    public UniversityMoreOption() {
+    public FacultyMoreOption() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View layout = inflater.inflate(R.layout.fragment_university_more_option, container, false);
+        View layout = inflater.inflate(R.layout.fragment_faculty_more_option, container, false);
 
 
         recyclerView = layout.findViewById(R.id.recycler_view);
@@ -48,30 +46,30 @@ public class UniversityMoreOption extends Fragment {
         try {
 
             String title[] = {
-                    "Add College",
                     "Notification",
                     "Files",
+                    "Time Table",
                     "Logout",
             };
 
             String description[] = {
-                    "Add new Colleges",
-                    "Send Notifications to all College",
-                    "Send Files to all College",
+                    "Send Notifications to Student",
+                    "Send Files to Student",
+                    "Upload Time Table for department",
                     "",
             };
 
             String code[] = {
-                    "UniAddCollege",
-                    "UniAddNotify",
-                    "UniAddFile",
+                    "FacultyAddNotify",
+                    "FacultyAddFile",
+                    "FacultyAddTimeTable",
                     "Logout",
             };
 
             int icons[] = {
-                    R.drawable.ic_school_black_24dp,
                     R.drawable.ic_notifications_black_24dp,
                     R.drawable.ic_picture_as_pdf_black_24dp,
+                    R.drawable.ic_view_comfy_black_24dp,
                     R.drawable.ic_exit_to_app_black_24dp,
             };
 

@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sehalsein.universityportal.Activity.CollegeDetailActivity;
 import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Model.MoreOption;
 import com.sehalsein.universityportal.R;
+import com.sehalsein.universityportal.StudentPortalActivity.StudentViewAllFiles;
+import com.sehalsein.universityportal.UniversityPortalActivity.UniversitySendFileActivity;
 import com.sehalsein.universityportal.UniversityPortalActivity.UniverstyAddCollege;
 
 import java.util.List;
@@ -25,6 +28,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<MoreOption> moreOptionList;
     private Context context;
+    private static final String PORTAL_KEY = "portal";
 
     public MoreAdapter(List<MoreOption> moreOptionList, Context context) {
         this.moreOptionList = moreOptionList;
@@ -43,31 +47,53 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         MoreOptionViewHolder moreOptionViewHolder = (MoreOptionViewHolder) holder;
 
         moreOptionViewHolder.setRow(item);
-
+        String code[] = {
+                "FacultyAddNotify",
+                "FacultyAddFile",
+                "FacultyAddTimeTable",
+                "Logout",
+        };
         moreOptionViewHolder.row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (item.getTitle()){
-                    case "Add College" :
+                switch (item.getCode()){
+                    case "UniAddCollege" :
                         context.startActivity(new Intent(context, UniverstyAddCollege.class));
                         break;
-                    case "Places" :
-                        //context.startActivity(new Intent(context, PlacesListActivity.class));
+                    case "Logout" :
                         break;
-                    case "Amenities" :
-                        ///context.startActivity(new Intent(context, AmenitiesListActivity.class));
+                    case "UniAddFile" :
+                        context.startActivity(new Intent(context, UniversitySendFileActivity.class));
                         break;
-                    case "Notification" :
+                    case "UniAddNotify" :
                         context.startActivity(new Intent(context, NotificationActivity.class));
+                        break;
+                    case "FacultyAddNotify":
+                        sendNotification();
+                        break;
+//                    case "FacultyAddFile":
+//                        break;
+//                    case "FacultyAddTimeTable":
+//                        break;
+                    case "StudentViewFile" :
+                        context.startActivity(new Intent(context, StudentViewAllFiles.class));
+                        break;
+                    case "StudentCollegeDetail":
+                        context.startActivity(new Intent(context, CollegeDetailActivity.class));
                         break;
                     default:
                         makeToast("Comming Soon");
-
                 }
             }
         });
 
 
+    }
+
+    private void sendNotification(){
+        Intent intent = new Intent(context, NotificationActivity.class);
+        intent.putExtra(PORTAL_KEY, "Faculty");
+        context.startActivity(intent);
     }
 
     private void makeToast(String message){

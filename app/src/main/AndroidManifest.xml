@@ -31,8 +31,19 @@
             android:label="@string/title_activity_university_view_all_notification"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FacultyPortalActivity.FacultyPortal"
-            android:label="@string/title_activity_faculty_portal"></activity>
+            android:name=".FacultyPortalActivity.FacultyPortalHomeTabActivity"
+            android:label="@string/title_activity_faculty_portal" />
+        <activity
+            android:name=".StudentPortalActivity.StudentPortalHomeActivity"
+            android:label="@string/title_activity_student_portal_home" />
+        <activity
+            android:name=".Activity.ViewImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FacultyPortalActivity.FacultyUploadFile" />
+        <activity android:name=".FacultyPortalActivity.FacultySendFIleActivity" />
+        <activity android:name=".StudentPortalActivity.StudentViewAllFiles" />
+        <activity android:name=".Activity.CollegeDetailActivity" />
+        <activity android:name=".UniversityPortalActivity.UniversitySendFileActivity"></activity>
     </application>
 
 </manifest>

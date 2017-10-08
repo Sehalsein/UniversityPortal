@@ -1,14 +1,18 @@
 package com.sehalsein.universityportal.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sehalsein.universityportal.Activity.NotificationActivity;
 import com.sehalsein.universityportal.Model.NotificationDetail;
 import com.sehalsein.universityportal.R;
+import com.sehalsein.universityportal.UniversityPortalActivity.UniversityViewAllNotification;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +28,12 @@ public class NotificationAdapter  extends RecyclerView.Adapter<RecyclerView.View
     private List<NotificationDetail> notificationDetailList;
     private Context context;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String portal;
+    private static final String TITLE_KEY = "title";
+    private static final String MESSAGE_KEY = "message";
+    private static final String PORTAL_KEY = "portal";
+
+
 
     public NotificationAdapter() {
 
@@ -47,16 +57,38 @@ public class NotificationAdapter  extends RecyclerView.Adapter<RecyclerView.View
             e.printStackTrace();
         }
         notificationContentViewHolder.setMessage(notificationDetail.getMessage());
+
+        if(portal.equals("Faculty")){
+            notificationContentViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    makeToast("Forward Notification");
+                    sendNotification(notificationDetail.getTitle(),notificationDetail.getMessage());
+                }
+            });
+        }
     }
 
+    private void sendNotification(String title,String message){
+        Intent intent = new Intent(context, NotificationActivity.class);
+        intent.putExtra(TITLE_KEY, title);
+        intent.putExtra(MESSAGE_KEY, message);
+        intent.putExtra(PORTAL_KEY, "Faculty");
+        context.startActivity(intent);
+    }
+
+    private void makeToast(String message){
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    }
     @Override
     public int getItemCount() {
         return notificationDetailList.size();
     }
 
-    public NotificationAdapter(List<NotificationDetail> notificationDetailList, Context context) {
+    public NotificationAdapter(List<NotificationDetail> notificationDetailList, Context context,String portal) {
         this.notificationDetailList = notificationDetailList;
         this.context = context;
+        this.portal = portal;
     }
 
 

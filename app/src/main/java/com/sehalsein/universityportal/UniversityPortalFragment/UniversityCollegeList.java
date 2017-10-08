@@ -134,9 +134,9 @@ public class UniversityCollegeList extends Fragment {
                                             case R.id.college_option_delete:
                                                 makeToast("Delete");
                                                 break;
-                                            case R.id.college_option_block:
-                                                makeToast("Block");
-                                                break;
+//                                            case R.id.college_option_block:
+//                                                makeToast("Block");
+//                                                break;
                                         }
                                     }
                                 })

@@ -42,6 +42,23 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp">
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/course_better_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Course"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </android.support.design.widget.TextInputLayout>
+
     <Button
         android:layout_margin="10dp"
         android:onClick="sendNotification"

@@ -12,9 +12,28 @@
 
     <string name="firebase_databse_node_colleges">colleges</string>
     <string name="firebase_databse_node_colleges_files">colleges_files</string>
-    <string name="firebase_databse_node_notification">college_notification</string>
+    <string name="firebase_databse_node_college_notification">college_notification</string>
+    <string name="firebase_databse_node_student_notification">student_notification</string>
+    <string name="firebase_databse_node_student_files">student_files</string>
+
+
     <string name="title_activity_university_view_all_files">UniversityViewAllFiles</string>
     <string name="title_activity_university_view_all_notification">UniversityViewAllNotification
     </string>
     <string name="title_activity_faculty_portal">FacultyPortal</string>
+
+
+    <string-array name="all_course_available">
+        <item>All Course</item>
+        <item>BCA</item>
+        <item>BBM</item>
+        <item>BCOM</item>
+        <item>BA</item>
+        <item>MCA</item>
+        <item>MBA</item>
+        <item>MCOM</item>
+        <item>MA</item>
+    </string-array>
+    <string name="title_activity_student_portal_home">StudentPortalHomeActivity</string>
+
 </resources>
