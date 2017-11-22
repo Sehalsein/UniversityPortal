@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UniversityPortal</string>
+    <string name="app_name">Apprise</string>
     <string name="title_activity_university_home_tab">UniversityHomeTabActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

@@ -43,7 +43,8 @@ public class UniverstyAddCollege extends AppCompatActivity {
     private final static String TAG = "UniverstyAddCollege";
     private String COLLEGE_NODE = null;
     private String USER_NODE = null;
-
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
