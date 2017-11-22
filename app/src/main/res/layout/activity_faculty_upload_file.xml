@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sehalsein.universityportal.FacultyPortalActivity.FacultyUploadFile">
+    tools:context="com.monika.universityportal.FacultyPortalActivity.FacultyUploadFile">
 
 </android.support.constraint.ConstraintLayout>

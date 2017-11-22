@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sehalsein.universityportal">
+    package="com.monika.universityportal">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.SplashScreenActivity">
+        <activity android:name="com.monika.universityportal.Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,34 +17,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UniversityPortalActivity.UniversityHomeTabActivity"
+            android:name="com.monika.universityportal.UniversityPortalActivity.UniversityHomeTabActivity"
             android:label="@string/title_activity_university_home_tab" />
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".UniversityPortalActivity.UniverstyAddCollege" />
+        <activity android:name="com.monika.universityportal.Activity.LoginActivity" />
+        <activity android:name="com.monika.universityportal.UniversityPortalActivity.UniverstyAddCollege" />
         <activity
-            android:name=".UniversityPortalActivity.UniversityViewAllFiles"
+            android:name="com.monika.universityportal.UniversityPortalActivity.UniversityViewAllFiles"
             android:label="@string/title_activity_university_view_all_files"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.NotificationActivity" />
+        <activity android:name="com.monika.universityportal.Activity.NotificationActivity" />
         <activity
-            android:name=".UniversityPortalActivity.UniversityViewAllNotification"
+            android:name="com.monika.universityportal.UniversityPortalActivity.UniversityViewAllNotification"
             android:label="@string/title_activity_university_view_all_notification"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FacultyPortalActivity.FacultyPortalHomeTabActivity"
+            android:name="com.monika.universityportal.FacultyPortalActivity.FacultyPortalHomeTabActivity"
             android:label="@string/title_activity_faculty_portal" />
         <activity
-            android:name=".StudentPortalActivity.StudentPortalHomeActivity"
+            android:name="com.monika.universityportal.StudentPortalActivity.StudentPortalHomeActivity"
             android:label="@string/title_activity_student_portal_home" />
         <activity
-            android:name=".Activity.ViewImageActivity"
+            android:name="com.monika.universityportal.Activity.ViewImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FacultyPortalActivity.FacultyUploadFile" />
-        <activity android:name=".FacultyPortalActivity.FacultySendFIleActivity" />
-        <activity android:name=".StudentPortalActivity.StudentViewAllFiles" />
-        <activity android:name=".Activity.CollegeDetailActivity" />
-        <activity android:name=".UniversityPortalActivity.UniversitySendFileActivity" />
-        <activity android:name=".FacultyPortalActivity.FacultyAddStudentActivity"></activity>
+        <activity android:name="com.monika.universityportal.FacultyPortalActivity.FacultyUploadFile" />
+        <activity android:name="com.monika.universityportal.FacultyPortalActivity.FacultySendFIleActivity" />
+        <activity android:name="com.monika.universityportal.StudentPortalActivity.StudentViewAllFiles" />
+        <activity android:name="com.monika.universityportal.Activity.CollegeDetailActivity" />
+        <activity android:name="com.monika.universityportal.UniversityPortalActivity.UniversitySendFileActivity" />
+        <activity android:name="com.monika.universityportal.FacultyPortalActivity.FacultyAddStudentActivity"></activity>
     </application>
 
 </manifest>
