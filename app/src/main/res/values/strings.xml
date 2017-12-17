@@ -17,6 +17,7 @@
     <string name="firebase_databse_node_student_files">student_files</string>
     <string name="firebase_databse_node_student">student</string>
     <string name="firebase_databse_node_user_detail">user_detail</string>
+    <string name="firebase_databse_node_time_table">time_table_detail</string>
 
 
     <string name="title_activity_university_view_all_files">UniversityViewAllFiles</string>
@@ -24,17 +25,32 @@
     </string>
     <string name="title_activity_faculty_portal">FacultyPortal</string>
 
-
     <string-array name="all_course_available">
         <item>All Course</item>
-        <item>BCA</item>
-        <item>BBM</item>
-        <item>BCOM</item>
-        <item>BA</item>
-        <item>MCA</item>
-        <item>MBA</item>
-        <item>MCOM</item>
-        <item>MA</item>
+        <item>1st BCA</item>
+        <item>2nd BCA</item>
+        <item>3rd BCA</item>
+        <item>1st BBM</item>
+        <item>2nd BBM</item>
+        <item>3rd BBM</item>
+        <item>1st BCOM</item>
+        <item>2nd BCOM</item>
+        <item>3rd BCOM</item>
+        <item>1st BA</item>
+        <item>2nd BA</item>
+        <item>3rd BA</item>
+        <item>1st MCA</item>
+        <item>2nd MCA</item>
+        <item>3rd MCA</item>
+        <item>1st MBA</item>
+        <item>2nd MBA</item>
+        <item>3rd MBA</item>
+        <item>1st MCOM</item>
+        <item>2nd MCOM</item>
+        <item>3rd MCOM</item>
+        <item>1st MA</item>
+        <item>2nd MA</item>
+        <item>3rd MA</item>
     </string-array>
     <string name="title_activity_student_portal_home">StudentPortalHomeActivity</string>
 

@@ -15,10 +15,13 @@ import com.monika.universityportal.Activity.CollegeDetailActivity;
 import com.monika.universityportal.Activity.LoginActivity;
 import com.monika.universityportal.Activity.NotificationActivity;
 import com.monika.universityportal.FacultyPortalActivity.FacultyAddStudentActivity;
+import com.monika.universityportal.FacultyPortalActivity.FacultySendFIleActivity;
+import com.monika.universityportal.FacultyPortalActivity.FacultyTimeTableListActivity;
 import com.monika.universityportal.Model.MoreOption;
 import com.monika.universityportal.Model.UserData;
 import com.monika.universityportal.R;
 import com.monika.universityportal.StudentPortalActivity.StudentViewAllFiles;
+import com.monika.universityportal.StudentPortalActivity.StudentViewTimeTable;
 import com.monika.universityportal.UniversityPortalActivity.UniversitySendFileActivity;
 import com.monika.universityportal.UniversityPortalActivity.UniverstyAddCollege;
 
@@ -83,15 +86,20 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     case "FacultyAddStudent":
                         context.startActivity(new Intent(context, FacultyAddStudentActivity.class));
                         break;
-//                    case "FacultyAddFile":
-//                        break;
-//                    case "FacultyAddTimeTable":
-//                        break;
+                   case "FacultyAddFile":
+                        context.startActivity(new Intent(context, FacultySendFIleActivity.class));
+                        break;
+                    case "FacultyAddTimeTable":
+                        context.startActivity(new Intent(context, FacultyTimeTableListActivity.class));
+                        break;
                     case "StudentViewFile":
                         context.startActivity(new Intent(context, StudentViewAllFiles.class));
                         break;
                     case "StudentCollegeDetail":
                         viewCollegeDetail();
+                        break;
+                    case "StudentViewTimeTable":
+                        context.startActivity(new Intent(context, StudentViewTimeTable.class));
                         break;
                     default:
                         makeToast("Comming Soon");
